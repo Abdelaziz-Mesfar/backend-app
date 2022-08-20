@@ -3,11 +3,14 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config()
 
+const patientRouter = require('./routes/patientsRoutes');
+
 const app = express();
 
+app.use(express.json());
 app.use(cors());
 
-
+app.use('/patients', patientRouter)
 
 app.get('/', (req, res) => {
     res.json('hello world')
@@ -15,16 +18,16 @@ app.get('/', (req, res) => {
 
 const tech = [
     {
-        _id:"1",
+        _id: "1",
         name: "React"
     },
     {
-        _id:"2",
+        _id: "2",
         name: "Node"
     }
 ]
 
-app.get('/tech', (req,res)=>{
+app.get('/tech', (req, res) => {
     res.json(tech)
 })
 
@@ -37,6 +40,6 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true })
             console.log(`port is listening on port ${PORT}`);
         })
     })
-    .catch((error)=>{
+    .catch((error) => {
         console.log(error);
     })
