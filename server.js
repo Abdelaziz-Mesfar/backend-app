@@ -6,6 +6,7 @@ require('dotenv').config()
 const patientRouter = require('./routes/patientsRoutes');
 const AppointmentRouter = require('./routes/appointmentsRoutes');
 const userRouter = require('./routes/usersRoutes');
+const toothRouter = require('./routes/teethRoutes');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use('/patients', patientRouter);
 app.use('/appointments', AppointmentRouter);
 app.use('/auth', userRouter);
+app.use('/patient-tooth', toothRouter)
 
 app.get('/', (req, res) => {
     res.json('hello world')

@@ -43,6 +43,12 @@ const loginValidator = Joi.object({
     password: Joi.string().required()
 })
 
+const toothValidator = Joi.object({
+    number: Joi.string(),
+    description: Joi.string()
+})
+
+
 
 
 
@@ -52,5 +58,6 @@ module.exports = {
     appointmentValidator,
     updateAppointmentValidator,
     loginValidator,
-    registerValidator
+    registerValidator,
+    toothValidator
 }
