@@ -29,11 +29,28 @@ const updateAppointmentValidator = Joi.object({
     end: Joi.date()
 })
 
+const registerValidator = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    phone: Joi.number(),
+    adress: Joi.string(),
+    password: Joi.string().required().min(8)
+})
+
+const loginValidator = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
+})
+
+
 
 
 module.exports = {
     patientValidator,
     updatePatientValidator,
     appointmentValidator,
-    updateAppointmentValidator
+    updateAppointmentValidator,
+    loginValidator,
+    registerValidator
 }
