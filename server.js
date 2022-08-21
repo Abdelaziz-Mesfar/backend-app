@@ -11,8 +11,8 @@ const toothRouter = require('./routes/teethRoutes');
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-app.options('*', cors());
+app.use(cors({ credentials: true, origin: [process.env.WEB_APP_URL] }));
+// app.options('*', cors());
 
 app.use('/patients', patientRouter);
 app.use('/appointments', AppointmentRouter);
