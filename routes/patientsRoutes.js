@@ -1,14 +1,14 @@
 const express = require('express');
 
 const { getAllPatients, createPatient, updatePatient, deletePatient, getSinglePatient } = require('../controllers/patientsController');
-// const checkAuth = require('../middlewares/check-auth')
+const checkAuthorization = require('../middlewares/checkAuth');
 
 const router = express.Router();
 
-router.get('/', getAllPatients)
-router.post('/', createPatient)
-router.put('/:id', updatePatient)
-router.delete('/:id', deletePatient)
-router.get('/:id', getSinglePatient)
+router.get('/', checkAuthorization, getAllPatients)
+router.post('/', checkAuthorization, createPatient)
+router.put('/:id', checkAuthorization, updatePatient)
+router.delete('/:id', checkAuthorization, deletePatient)
+router.get('/:id', checkAuthorization, getSinglePatient)
 
 module.exports = router

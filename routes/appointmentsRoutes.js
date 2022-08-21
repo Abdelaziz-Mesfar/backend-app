@@ -7,15 +7,15 @@ const {
     deleteAppointment, 
     getSingleAppointment } = require('../controllers/appointmentsController');
 
-// const checkAuth = require('../middlewares/check-auth')
+const checkAuthorization = require('../middlewares/checkAuth');
 
 const router = express.Router();
 
-router.get('/', getAllAppointments);
-router.get('/:id', getSingleAppointment);
-router.get('/patient-appointment/:patientId', getSinglePatientAppointments);
-router.post('/:patientId', createNewAppointment);
-router.put('/:patientId/:id', updateAppointment);
-router.delete('/:id', deleteAppointment);
+router.get('/', checkAuthorization, getAllAppointments);
+router.get('/:id', checkAuthorization, getSingleAppointment);
+router.get('/patient-appointment/:patientId', checkAuthorization, getSinglePatientAppointments);
+router.post('/:patientId', checkAuthorization, createNewAppointment);
+router.put('/:patientId/:id', checkAuthorization,updateAppointment);
+router.delete('/:id', checkAuthorization, deleteAppointment);
 
 module.exports = router

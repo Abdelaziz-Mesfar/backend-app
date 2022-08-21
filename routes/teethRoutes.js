@@ -7,13 +7,13 @@ const {
     updateToothDescription
 } = require('../controllers/teethController');
 
-// const checkAuth = require('../middlewares/check-auth')
+const checkAuthorization = require('../middlewares/checkAuth');
 
 const router = express.Router()
 
-router.get('/:patientId/:toothId', getAllTeethOnePatientDescription)
-router.post('/:patientId/:toothId', addToothDescription)
-router.delete('/:patientId/:toothId/:id', deleteToothDescription)
-router.put('/:patientId/:toothId/:id', updateToothDescription)
+router.get('/:patientId/:toothId', checkAuthorization, getAllTeethOnePatientDescription)
+router.post('/:patientId/:toothId', checkAuthorization, addToothDescription)
+router.delete('/:patientId/:toothId/:id', checkAuthorization, deleteToothDescription)
+router.put('/:patientId/:toothId/:id', checkAuthorization, updateToothDescription)
 
 module.exports = router
