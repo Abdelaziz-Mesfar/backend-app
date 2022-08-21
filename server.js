@@ -4,13 +4,15 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 const patientRouter = require('./routes/patientsRoutes');
+const AppointmentRouter = require('./routes/appointmentsRoutes');
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.use('/patients', patientRouter)
+app.use('/patients', patientRouter);
+app.use('/appointments', AppointmentRouter);
 
 app.get('/', (req, res) => {
     res.json('hello world')
